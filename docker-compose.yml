@@ -1,0 +1,82 @@
+version: "3.7"
+services:
+  #nginx container
+  nginx:
+    container_name: nginx
+    hostname: nginx
+    build: ./config/nginx
+    networks: ['stack']
+    #Expose port 80 to allow users to hit content and generate data for filebeat and packetbeat.
+    ports: ['80:80']
+    command: nginx -g 'daemon off;'
+    volumes:
+      #Logs are mounted to a relative path. These are also accessed by Filebeat and consumed by the Nginx module.
+      - ./logs/nginx/:/var/log/nginx/
+
+  #MySQL container
+  mysql:
+    container_name: mysql
+    hostname: mysql
+    build: ./config/mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+      - "MYSQL_DATABASE=${MYSQL_DB}"
+    networks: ['stack']
+    #Expose port 3306 to allow users to connect and perform operations. These will be picked up by Packetbeat, Filebeat and Metricbeat.
+    ports: ['3306:3306']
+    volumes:
+      #Use named volume so mysql data is persisted across restart.
+      - mysqldata:/var/lib/mysql/
+      #Logs are mounted to a relative path. These are also accessed by Filebeat and consumed by the MySQL module.
+      - ./logs/mysql:/var/log/mysql/
+      
+  sailsjs:
+    container_name: sailsjs
+    hostname: sailsjs
+    tty: true
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    ports:
+      - 1337:1337
+      - 9337:9337
+    environment:
+      PORT: 1337
+      DEBUG_PORT: 9337
+      WAIT_HOSTS: mysql:3306
+      NODE_ENV: development
+      MYSQL_URL: mysql://root:t3mp0r4l@localhost:3306/colibriwork
+    volumes:
+      - ./backend:/usr/src/app
+    networks:
+      - stack
+    depends_on:
+      - "mysql"
+  webapp:
+    container_name: webapp
+    hostname: webapp
+    restart: always
+    stdin_open: true
+    tty: true
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./frontend:/app"
+      - "/app/node_modules"
+    environment:
+      REACT_APP_API_URL: http://webapp.colibri.local
+    networks:
+      - stack
+    depends_on:
+      - "sailsjs"
+
+volumes:
+  mysqldata:
+    driver: local
+  esdata:
+    driver: local
+networks: {stack: {}}
