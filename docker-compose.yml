@@ -79,4 +79,7 @@ volumes:
     driver: local
   esdata:
     driver: local
+  ui-build:
+  electron-cache:
+  electron-builder-cache:
 networks: {stack: {}}
