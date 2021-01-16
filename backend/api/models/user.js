@@ -79,9 +79,12 @@ module.export = {
       columnName: "alerts",
       columnType: "varchar(150)",
       required: false,
-    }
+    },
 
-
+    profiles:{
+      collection:"profile",
+      via:"owner"
+    },
 
   },
 };

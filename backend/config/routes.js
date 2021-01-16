@@ -11,4 +11,7 @@
 module.exports.routes = {
 
 
+  //User Routers
+    'POST /user/create':{controller:'UserController', action:'create'}
+
 };
