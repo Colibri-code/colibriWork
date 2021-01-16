@@ -55,6 +55,7 @@ backend/nbproject
 .vscode
 .node_history
 dump.rdb
+.eslintcache
 
 backend/npm-debug.log
 lib-cov
@@ -72,5 +73,4 @@ yarn-error.log*
 /node_modules
 /frontend/node_modules
 /backend/node_modules
-
 backend/config/datastores.js
