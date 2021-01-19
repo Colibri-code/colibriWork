@@ -49,7 +49,7 @@ module.exports.datastores = {
     *                                                                          *
     ***************************************************************************/
     adapter: 'sails-mysql',
-    url: 'mysql://root:t3mp0r4l@mysql:3306/colibriwork',
+    url: 'mysql://root:machines1@localhost:3306/colibriwork',
 
   },
 

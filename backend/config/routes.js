@@ -11,4 +11,10 @@
 module.exports.routes = {
 
 
+  //User Routers
+    'POST /user/create':{controller:'UserController', action:'create', cors: {
+      allowOrigins: ['http://localhost:1337'],
+      allowCredentials: false
+    }}
+
 };
