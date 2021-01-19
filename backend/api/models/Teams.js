@@ -5,7 +5,7 @@
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
-module.export = {
+module.exports = {
 
   datastore: "default",
 
@@ -17,8 +17,8 @@ module.export = {
       columnName: 'NameTeam',
       columnType: 'varchar(50)',
       required: true
-    },
-  },
+    }
+  }
 
 };
 

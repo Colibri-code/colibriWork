@@ -1,6 +1,6 @@
 const ProjectManager = require("./ProjectManager");
 
-module.export = {
+module.exports = {
   datastore: "default",
   /**Fields BD */
   attributes: {
@@ -8,9 +8,8 @@ module.export = {
     email: {
 
       type: 'string',
-      columnName: 'id',
-      columnnType: 'varchar(50)',
-      autoIncrement: true,
+      columnName: 'email',
+      columnType: 'varchar(50)',
       unique: true,
       required: true
     },
@@ -86,9 +85,9 @@ module.export = {
       collection: 'ProjectManager',
       via: 'owner',
     },
-    profiles:{
-      collection:"profile",
-      via:"owner"
-    },
+  //  profiles:{
+  //    collection:"profile",
+   //   via:"owner"
+   //},
   },
 };
