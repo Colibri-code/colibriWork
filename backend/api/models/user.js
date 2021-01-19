@@ -1,3 +1,5 @@
+const ProjectManager = require("./ProjectManager");
+
 module.export = {
   datastore: "default",
   /**Fields BD */
@@ -79,8 +81,11 @@ module.export = {
       columnName: "alerts",
       columnType: "varchar(150)",
       required: false,
-    }
-
+    },
+    ProjectManager: {
+      collection: 'ProjectManager',
+      via: 'owner',
+    },
 
 
   },
