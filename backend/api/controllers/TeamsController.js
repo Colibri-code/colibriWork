@@ -16,8 +16,9 @@ create: async function (req, res) {
     if (!req.body.NameTeam)
     return res.serverError("Invalid Data");
     const newTeam = await Teams.create(req.body).fetch();
-
     res.send({ team: newTeam });
+    console.log(req.body.NameTeam);
+
   } catch (error) {
 
     res.serverError("Invalid Data");

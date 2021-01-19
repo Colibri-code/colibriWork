@@ -6,14 +6,15 @@
  */
 
 module.export = {
+
   datastore: "default",
 
   attributes: {
 
-    TeamName: {
+    NameTeam: {
 
       type: 'string',
-      columnName: 'TeamName',
+      columnName: 'NameTeam',
       columnType: 'varchar(50)',
       required: true
     },
