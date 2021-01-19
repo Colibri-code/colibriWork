@@ -9,7 +9,7 @@ module.export = {
 
       type: 'string',
       columnName: 'id',
-      columType: 'int',
+      columType: 'varchar(50)',
       autoIncrement: true,
       unique: true,
       require: true
@@ -86,7 +86,9 @@ module.export = {
       collection: 'ProjectManager',
       via: 'owner',
     },
-
-
+    profiles:{
+      collection:"profile",
+      via:"owner"
+    },
   },
 };
