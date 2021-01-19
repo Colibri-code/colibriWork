@@ -7,7 +7,7 @@ module.export = {
 
       type: 'string',
       columnName: 'id',
-      columType: 'int',
+      columType: 'varchar(50)',
       autoIncrement: true,
       unique: true,
       require: true
