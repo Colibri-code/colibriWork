@@ -9,10 +9,10 @@ module.export = {
 
       type: 'string',
       columnName: 'id',
-      columType: 'varchar(50)',
+      columnnType: 'varchar(50)',
       autoIncrement: true,
       unique: true,
-      require: true
+      required: true
     },
 
     password: {
