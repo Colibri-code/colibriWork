@@ -55,6 +55,7 @@ backend/nbproject
 .vscode
 .node_history
 dump.rdb
+.eslintcache
 
 
 backend/npm-debug.log
