@@ -24,5 +24,48 @@ module.exports = {
     }
   },
 
+  /**
+ * Get user info to Database with (id) parameter
+ */
+  read: async function (req, res) {
+
+    if (req.params.id) {
+      const data = await user.findOne({
+        where: { id: req.params.id },
+        select: ["createdAt","updatedAt","id","email","password","firstName","secondName","picture","headline","profile","location","phoneNumber", "message","alerts"],
+      });
+      res.json({ user: data });
+    } else {
+      res.notFound();
+    }
+  },
+
+  /**
+ * Update user info to Database with (id) parameter
+ */
+  update: async function (req, res) {
+    try {
+      const data = await user.update(req.params.id).set(req.body).fetch();
+      res.send({ user: data });
+    } catch (error) {
+      console.log(error);
+      res.badRequest();
+    }
+  },
+
+  /**
+ * Delete user info to Database with (id) parameter
+ */
+  delete: async function (req, res) {
+    try {
+      await user.destroyOne(req.params.id);
+      res.send();
+    } catch (error) {
+      res.badRequest();
+    }
+  },
+
+
+
 };
 

@@ -17,6 +17,11 @@ module.exports = {
       columnName: 'NameTeam',
       columnType: 'varchar(50)',
       required: true
+    },
+
+    Users:{
+      model: "User",
+      via:'owner'
     }
   }
 
