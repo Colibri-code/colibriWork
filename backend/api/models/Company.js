@@ -6,7 +6,6 @@
  */
 
 module.exports = {
-
   datastore: 'default',
   identity: 'company',
   tableName: 'companies',
@@ -106,7 +105,6 @@ module.exports = {
       collection: "user",
       via: "company",
     },
-
   },
 
 };

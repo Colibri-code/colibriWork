@@ -99,5 +99,13 @@ module.exports = {
       //user will only have one company to belong
       model: "company",
     },
-  }
+    ProjectManager: {
+      collection: 'ProjectManager',
+      via: 'owner',
+    },
+    profiles:{
+      collection:"profile",
+      via:"owner"
+    },
+  },
 };

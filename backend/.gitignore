@@ -46,7 +46,7 @@
 ################################################
 
 config/local.js
-
+config/datastores.js
 
 ################################################
 # Dependencies
@@ -124,6 +124,7 @@ nbproject
 .vscode
 .node_history
 dump.rdb
+
 
 npm-debug.log
 lib-cov
