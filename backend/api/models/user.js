@@ -6,11 +6,7 @@
  */
 
 module.exports = {
-
-  datastore: 'default',
-  identity: 'user',
-  tableName: 'users',
-
+  datastore: "default",
   /**Fields BD */
   attributes: {
 
@@ -103,9 +99,9 @@ module.exports = {
       collection: 'ProjectManager',
       via: 'owner',
     },
-    profiles:{
-      collection:"profile",
-      via:"owner"
-    },
+  //  profiles:{
+  //    collection:"profile",
+   //   via:"owner"
+   //},
   },
 };
