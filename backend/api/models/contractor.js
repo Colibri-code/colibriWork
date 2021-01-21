@@ -33,7 +33,7 @@ module.exports = {
       required: false,
       columnType: 'varchar(15)'
     },
-/*
+
     //Relationships
     users: {
       //an contractor can have multiple users but a user will only have one contractor to belong
@@ -46,7 +46,8 @@ module.exports = {
       collection: "company",
       via: "contractor",
     },
-
+    
+/*
     supports: {
       //an contractor can have multiple companies but a companies will only have one contractor to belong
       collection: "support",

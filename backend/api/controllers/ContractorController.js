@@ -7,6 +7,7 @@
 
 module.exports = {
   
+    // create a contractor
     create: async function (req, res) {
         try {
           const newContractor = await contractor
