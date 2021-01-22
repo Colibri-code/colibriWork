@@ -47,10 +47,4 @@ module.exports.routes = {
   'GET /company/Read/:id': { controller: "CompanyController", action: "read" },
   'PATCH /company/Update/:id': { controller: "CompanyController", action: "update" },
   'DELETE /company/Delete': { controller: "CompanyController", action: "delete" },
-
-  //Profile Designer
-  'POST /company/Create': { controller: "OrganizationController", action: "create" },
-  'GET /ProfileDesigner/read:id':{controller: "OrganizationController", action: "read"},
-  'PUT /ProfileDesigner/update/:id':{controller: "OrganizationController",action:"update"},
-  'DELETE /ProfileDesigner/delete/:id':{controller: "OrganizationController",action:"delete"},
 };
