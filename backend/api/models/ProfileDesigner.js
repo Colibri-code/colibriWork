@@ -59,6 +59,7 @@ module.exports = {
          
     owner:{
       model: "user",
+      
     },
    },
 
