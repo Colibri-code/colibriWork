@@ -15,5 +15,7 @@ module.exports.routes = {
     'PUT /ProfileDesigner/update/:id':{controller: "OrganizationController",action:"update"},
     'DELETE /ProfileDesigner/delete/:id':{controller" OrganizationController",action:"delete"} 
       
-  
+
+
+      
 };
