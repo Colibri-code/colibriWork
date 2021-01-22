@@ -15,6 +15,13 @@ module.exports.routes = {
       allowCredentials: false
     }},
 
+    //Contractor Routes
+    
+    'POST /contractor/Create': { controller: "ContractorController", action: "create" },
+    'GET /contractor/Read/:id': { controller: "ContractorController", action: "read" },
+    'PATCH /contractor/Update/:id': { controller: "ContractorController", action: "update" },
+    'DELETE /contractor/Delete': { controller: "ContractorController", action: "delete" },
+
     //ProjectManager Routes
 
     'POST /ProjectManager/Create': { controller: "ProjectManagerController", action: "create" },
