@@ -6,11 +6,7 @@
  */
 
 module.exports = {
-
-  datastore: 'default',
-  identity: 'user',
-  tableName: 'users',
-
+  datastore: "default",
   /**Fields BD */
   attributes: {
 
@@ -99,13 +95,22 @@ module.exports = {
       //user will only have one company to belong
       model: "company",
     },
+
+    contractor: {
+      //user will only have one contractor to belong
+      model: "contractor",
+    },
+
     ProjectManager: {
       collection: 'ProjectManager',
       via: 'owner',
     },
+    /*
     profiles:{
       collection:"profile",
       via:"owner"
     },
+    */
   },
+
 };
