@@ -6,11 +6,7 @@
  */
 
 module.exports = {
-
-  datastore: 'default',
-  identity: 'user',
-  tableName: 'users',
-
+  datastore: "default",
   /**Fields BD */
   attributes: {
 
