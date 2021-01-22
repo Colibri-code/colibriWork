@@ -9,9 +9,11 @@
  */
 
 module.exports.routes = {
-    'GET /api/controllers':'OrganizationController.get',
-    'POST /api/controllers': 'OrganizationController.create',
-    'PUT /api/controllers/:id': 'OrganizationController.update',
-    'DELETE /api/controllers/:id': 'OrganizationController.delete'   
-  
+    
+    
+    'GET /ProfileDesigner/get':{controller:"OrganizationController", action: "get"},
+    'POST /ProfileDesigner/create': {controller:"OrganizationController",action"create"},
+    'PUT /ProfileDesigner/update/:id':{controller: "OrganizationController",action:"update"},
+    'DELETE /ProfileDesigner/delete/:id':{controller" OrganizationController",action:"delete"} 
+    
 };
