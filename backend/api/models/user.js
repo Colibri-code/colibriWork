@@ -95,13 +95,22 @@ module.exports = {
       //user will only have one company to belong
       model: "company",
     },
+
+    contractor: {
+      //user will only have one contractor to belong
+      model: "contractor",
+    },
+
     ProjectManager: {
       collection: 'ProjectManager',
       via: 'owner',
     },
-  //  profiles:{
-  //    collection:"profile",
-   //   via:"owner"
-   //},
+    /*
+    profiles:{
+      collection:"profile",
+      via:"owner"
+    },
+    */
   },
+
 };

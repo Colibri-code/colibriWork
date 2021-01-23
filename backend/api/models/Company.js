@@ -105,6 +105,12 @@ module.exports = {
       collection: "user",
       via: "company",
     },
+
+    contractor: {
+      //company will only have one contractor to belong
+      model: "contractor",
+    },
+
   },
 
 };
