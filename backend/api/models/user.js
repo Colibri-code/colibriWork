@@ -7,6 +7,9 @@
 
 module.exports = {
   datastore: "default",
+  identity: 'user',
+  tableName: 'users',
+
   /**Fields BD */
   attributes: {
 

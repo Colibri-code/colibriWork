@@ -47,4 +47,11 @@ module.exports.routes = {
   'GET /company/Read/:id': { controller: "CompanyController", action: "read" },
   'PATCH /company/Update/:id': { controller: "CompanyController", action: "update" },
   'DELETE /company/Delete': { controller: "CompanyController", action: "delete" },
+
+  //Project Routes
+  
+  'POST /project/Create': { controller: "ProjectController", action: "create" },
+  'GET /project/Read/:id': { controller: "ProjectController", action: "read" },
+  'PATCH /project/Update/:id': { controller: "ProjectController", action: "update" },
+  'DELETE /project/Delete': { controller: "ProjectController", action: "delete" },
 };
