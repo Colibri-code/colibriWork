@@ -60,5 +60,11 @@ module.exports.routes = {
   'GET /contractor/Read/:id': { controller: "ContractorController", action: "read" },
   'PATCH /contractor/Update/:id': { controller: "ContractorController", action: "update" },
   'DELETE /contractor/Delete': { controller: "ContractorController", action: "delete" },
+  
+  //Time Routes
+  'POST /time/Create': { controller: "TimeController", action: "create" },
+  'GET /time/Read/:id': { controller: "TimeController", action: "read" },
+  'PATCH /time/Update/:id': { controller: "TimeController", action: "update" },
+  'DELETE /time/Delete/:id': { controller: "TimeController", action: "delete" },
 
 };
