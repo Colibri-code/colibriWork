@@ -16,7 +16,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl'
 import NativeSelect from '@material-ui/core/NativeSelect';
 import MenuItem from '@material-ui/core/MenuItem';
-import services from '.././../services';
+import ApiServices from '.././../services';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    //marginTop: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -47,13 +47,10 @@ export default function SignUp() {
   const classes = useStyles();
 
   const Userstate = {
-    id: null,
     firstName: "",
     secondName: "",
-    password: false,
+    password: "",
     email: "",
-    picture: "",
-    location: "",
     profile: ""
   };
 
@@ -65,69 +62,63 @@ export default function SignUp() {
 
   const [user, setUser] = useState(Userstate);
 
-  const [submitted, setSubmitted] = useState(false);
 
 
+  const handleNameChange = event => {
 
-  const handleInputChange = event => {
-    const { name, value } = event.target;
     setUser({
-      firtsName: event.target[''].value,
-      secondName: event.target[''].value,
-      password: event.target[''].value,
-      email: event.target[''].value,
-      picture: event.target[''].value,
-      location: event.target[''].value,
-      profile: event.target[''].value,
+      ...user,
+      [event.target.name]: event.target.value
     });
   };
 
-  const saveUser = () => {
+  function handleSubmit(e) {
+    e.preventDefault()
+
     var data = {
-      firtsName: user.firstName,
+      firstName: user.firstName,
       secondName: user.secondName,
       password: user.password,
       email: user.email,
-      picture: user.picture,
-      location: user.location,
       profile: user.profile,
     };
 
-    services.create(data)
+
+    ApiServices.create(data)
       .then(response => {
-        setTutorial({
-          id: response.data.id,
-          firtsName: response.data.firstName,
+        setUser({
+          firstName: response.data.firstName,
           secondName: response.data.secondName,
           password: response.data.password,
           email: response.data.email,
-          picture: response.data.picture,
-          location: response.data.location,
           profile: response.data.profile,
         });
-        setSubmitted(true);
         console.log(response.data);
       })
       .catch(e => {
         console.log(e);
-      });
-  };
 
+      });
+
+
+  }
 
   return (
     <div>
-
+      {/* <form onSubmit={handleSubmit}>
+        <input placeholder="Name" value={name} onChange={handleNameChange} />        
+          <button>Submit</button>
+      </form>*/}
       <Container component="main" maxWidth="xs">
-        {/*<CssBaseline />*/}
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            {/*<LockOutlinedIcon />*/}
+
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
           <form className={classes.form} noValidate
-            method="POST" >
+            method="POST" onSubmit={handleSubmit} >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -138,7 +129,7 @@ export default function SignUp() {
                   fullWidth
                   id="firstName"
                   label="First Name"
-                  autoFocus
+                  onChange={handleNameChange}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -148,8 +139,9 @@ export default function SignUp() {
                   fullWidth
                   id="lastName"
                   label="Last Name"
-                  name="lastName"
+                  name="secondName"
                   autoComplete="lname"
+                  onChange={handleNameChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -161,9 +153,11 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={handleNameChange}
+
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={6}>
                 <TextField
                   variant="outlined"
                   required
@@ -173,17 +167,39 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  onChange={handleNameChange}
+
                 />
               </Grid>
-              <Grid item xs={12}>
 
-                <Select className={classes.form}
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
+              <Grid item xs={12} sm={6} >
+
+                <Select
                   value={age}
-                  onChange={handleChange}
+                  onChange={handleNameChange}
+                  displayEmpty
+                  className={classes.form}
+                  inputProps={{ 'aria-label': 'Without label' }}
+                  variant="outlined"
                 >
-                  <MenuItem disabled value="">
+                  <MenuItem value="">
+                    <em>Choose..Type Profile</em>
+                  </MenuItem>
+                  <MenuItem value={1}>Project Manager Profile</MenuItem>
+                  <MenuItem value={2}>Developer Profile</MenuItem>
+                  <MenuItem value={3}>Designer Profile</MenuItem>
+                  <MenuItem value={4}>Finance Profile</MenuItem>
+                </Select>
+                {/* <Select  className={classes.form}
+                  
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select-helper"
+                  name="profile"
+                  label="Profile"
+                  onChange={handleNameChange}
+                  placeholder="profile"
+                >
+                  <MenuItem  value="">
                     <em>Choose.. Type Profile</em>
                   </MenuItem>
                   <MenuItem value={1}>Project Manager Profile</MenuItem>
@@ -191,36 +207,40 @@ export default function SignUp() {
                   <MenuItem value={3}>Designer Profile</MenuItem>
                   <MenuItem value={4}>Finance Profile</MenuItem>
 
-                </Select>
-
-
+                </Select>*/}
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="location"
-                  label="location"
-                  type="Location_type"
-                  id="location"
-                  autoComplete=""
-                />
-              </Grid>
+              {/*
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="location"
+                    label="Location"
+                    type="Location_type"
+                    id="location"
+                    autoComplete=""
+                    onChange={handleNameChange}
 
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="picture"
-                  label="picture"
-                  type="Picture"
-                  id="picture"
-                  autoComplete=""
-                />
-              </Grid>
+                  />
+                </Grid>*/
+              }
+              {/*
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="picture"
+                    label="Picture"
+                    type="Picture"
+                    id="picture"
+                    autoComplete=""
+                    onChange={handleNameChange}
 
+                  />
+                </Grid>*/
+              }
               <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
@@ -236,6 +256,7 @@ export default function SignUp() {
               variant="contained"
               color="primary"
               className=''
+
             >
               Sign Up
             </Button>
@@ -249,7 +270,7 @@ export default function SignUp() {
           </form>
         </div>
         <Box mt={5}>
-          {/*<Copyright />*/}
+
         </Box>
       </Container>
     </div>
