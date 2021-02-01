@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import SignUp from './components/SignUp/index';
+import SignUp from './components/SignUp';
 
 ReactDOM.render(
   <React.StrictMode>
