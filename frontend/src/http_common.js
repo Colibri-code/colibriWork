@@ -1,4 +1,4 @@
-import axios from "axios";
+/*import axios from "axios";
 
 //Route User
 export default axios.create({
@@ -6,4 +6,4 @@ export default axios.create({
   headers: {
     "Content-type": "application/json"
   }
-});
+});*/

@@ -95,7 +95,7 @@ export default function SignUp() {
 
     services.create(data)
       .then(response => {
-        setTutorial({
+        setUser({
           id: response.data.id,
           firtsName: response.data.firstName,
           secondName: response.data.secondName,
