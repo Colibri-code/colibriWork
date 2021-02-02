@@ -1,0 +1,12 @@
+@import '../../sass/main.scss';
+
+.signUpComponent {
+    .signUpAccount{
+        color: $Brandeisblue-color;
+        text-decoration: none;
+        &:hover {
+            color: $Midnightblue-color;
+            text-decoration: underline;
+        }
+    }
+}

@@ -7,6 +7,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 //import { render } from 'react-dom';
 import linkedinSignIn from './components/linkedinSignIn';
 import signup from './components/signup/signup';
+import { BrowserRouter, Route} from "react-router-dom";
 
 function App() {
 
@@ -30,5 +31,14 @@ function App() {
       )
     }
 
+      </header>
+    <div className="body">
+      <BrowserRouter>
+      <Route path="/register" component={Signup}></Route>
+      </BrowserRouter>
+    </div>
+    </div>
+  );
+}
 
 export default App;

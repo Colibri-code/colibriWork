@@ -6,7 +6,7 @@ const get = id => {
 };
 
 const create = data => {
-  return http.post("/user/create", data);
+  return http.post("/user/Create", data);
 };
 
 const update = (id, data) => {

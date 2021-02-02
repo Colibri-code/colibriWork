@@ -1,8 +1,9 @@
 /*import axios from "axios";
 
-//Route User
+//Axios Routes  User
+
 export default axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: "http://localhost:1337",
   headers: {
     "Content-type": "application/json"
   }
