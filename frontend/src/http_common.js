@@ -1,4 +1,4 @@
-import axios from "axios";
+/*import axios from "axios";
 
 //Axios Routes  User
 
@@ -7,4 +7,4 @@ export default axios.create({
   headers: {
     "Content-type": "application/json"
   }
-});
+});*/

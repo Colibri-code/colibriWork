@@ -87,7 +87,9 @@ export default function SignUp() {
     ApiServices.create(data)
       .then(response => {
         setUser({
-          firstName: response.data.firstName,
+          id: response.data.id,
+          firtsName: response.data.firstName,
+
           secondName: response.data.secondName,
           password: response.data.password,
           email: response.data.email,
