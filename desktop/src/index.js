@@ -1,18 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-//import { BrowserRouter, Route } from 'react-router-dom';
-import linkedinSignIn from './components/linkedinSignIn';
-
+import SignUp from './components/SignUp';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <SignUp/>
   </React.StrictMode>,
-  document.getElementById('root'),
-  document.getElementById('googleButton'),
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
