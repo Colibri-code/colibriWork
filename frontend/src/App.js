@@ -1,5 +1,8 @@
-import logo from './logo.svg';
+
 import './App.css';
+
+import '././assets/colors.scss'
+import '././assets/fonts.scss'
 import Signup from './components/signup/signup';
 import { BrowserRouter, Route} from "react-router-dom";
 
