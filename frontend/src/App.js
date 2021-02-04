@@ -1,5 +1,8 @@
 import './App.css';
-//import Signup from './components/signup/signup';
+
+import '././assets/colors.scss'
+import '././assets/fonts.scss'
+import './App.css';
 import Login from './components/login/Login';
 import React, { Component } from 'react';
 //import { LinkedInPopUp } from 'react-linkedin-login-oauth2';
