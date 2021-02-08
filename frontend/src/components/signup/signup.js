@@ -14,7 +14,7 @@ import ApiServices from '.././../services';
 import LogoPng from '.././../assets/img/colibriWork.png';
 import useForm from './useForm';
 import Validate from './validate'
-import './styles/styles.css'
+import './styles.css'
 
 
 
@@ -42,15 +42,6 @@ export default function SignUp() {
   
     ApiServices.create(data)
       .then(response => {
-        setUser({
-          id: response.data.id,
-          firtsName: response.data.firstName,
-
-          secondName: response.data.secondName,
-          password: response.data.password,
-          email: response.data.email,
-          profile: response.data.profile,
-        });
         console.log(response.data);
       })
       .catch(e => {
@@ -159,7 +150,7 @@ export default function SignUp() {
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/login" variant="body2">
                   Already have an account? Login
                 </Link>
               </Grid>

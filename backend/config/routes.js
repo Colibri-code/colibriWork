@@ -27,6 +27,7 @@ module.exports.routes = {
   'GET /user/Read/:id':{controller:'UserController', action:'read'},
   'PATCH  /user/Update/:id':{controller:'UserController', action:'update'},
   'DELETE /user/Delete/:id': {controller: "UserController", action: "delete"},
+  'POST /user/Login':{controller: "UserController", action:"login"},
 
 //Team Routes
   'POST /team/Create':{controller:'TeamsController', action:'create'},
@@ -42,7 +43,7 @@ module.exports.routes = {
   'DELETE /company/Delete': { controller: "CompanyController", action: "delete" },
 
   //Project Routes
-  
+
   'POST /project/Create': { controller: "ProjectController", action: "create" },
   'GET /project/Read/:id': { controller: "ProjectController", action: "read" },
   'PATCH /project/Update/:id': { controller: "ProjectController", action: "update" },
@@ -55,12 +56,12 @@ module.exports.routes = {
   'DELETE /designer/Delete/:id': { controller: "ProfileDesignerController", action: "delete" },
 
   //Contractor Routes
-  
+
   'POST /contractor/Create': { controller: "ContractorController", action: "create" },
   'GET /contractor/Read/:id': { controller: "ContractorController", action: "read" },
   'PATCH /contractor/Update/:id': { controller: "ContractorController", action: "update" },
   'DELETE /contractor/Delete': { controller: "ContractorController", action: "delete" },
-  
+
   //Time Routes
   'POST /time/Create': { controller: "TimeController", action: "create" },
   'GET /time/Read/:id': { controller: "TimeController", action: "read" },
