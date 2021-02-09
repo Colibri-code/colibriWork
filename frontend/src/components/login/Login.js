@@ -12,21 +12,20 @@ import Grid from '@material-ui/core/Grid';
 //import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import GoogleLogin from 'react-google-login';
-import { LinkedIn } from 'react-linkedin-login-oauth2';
-import img from './../../assets/linkedin.png'
-import googlesignin from './../../assets/google.png'
-import MicrosoftLogin from "react-microsoft-login";
-
-
-
+//import GoogleLogin from 'react-google-login';
+//import { LinkedIn } from 'react-linkedin-login-oauth2';
+//import MicrosoftLogin from "react-microsoft-login";
+import LogoPng from '.././../assets/img/colibriWork.png';
+import useLogin from './useLogin';
+import Validate from './validate'
+import ApiServices from '.././../services';
 
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
             <Link color="inherit" href="colibriwork.com">
-                ColibriWork
+                ColibriCode
          </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -35,62 +34,28 @@ function Copyright() {
 }
 
 
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        height: '100vh',
-    },
-    image: {
-        backgroundImage: 'url(https://source.unsplash.com/random)',
-        backgroundRepeat: 'no-repeat',
-        backgroundColor:
-            theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-    },
-    paper: {
-        margin: theme.spacing(8, 4),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-    },
-}));
-
 export default function SignInSide() {
+
+
+    const { handleSubmit, handleChange, user, error, useStyles } = useLogin(Submit, Validate);
+
     const classes = useStyles();
-    const [code, setErrorMessage] = useState('')
-    const handleSuccess = (data) => {
-        setErrorMessage({
-            code: data.code,
-            errorMessage: '',
-        });
+
+
+    function Submit() {
+        var data = {
+            password: user.password,
+            email: user.email,
+        };
+
+        ApiServices.login(data).then(response =>{
+            console.log(response.data)
+        }).catch(e => {
+            console.log(e);
+    
+          });
     }
 
-    const handleFailure = (error) => {
-        setErrorMessage({
-            code: '',
-            errorMessage: error.errorMessage,
-        });
-    }
-
-    const authHandler = (err, data) => {
-        console.log(err, data);
-    }
- 
-      const responseGoogle = (response) => {
-        console.log(response);
-    }
 
     return (
         <Grid container component="main" className={classes.root}>
@@ -98,13 +63,14 @@ export default function SignInSide() {
             <Grid item xs={false} sm={4} md={7} className={classes.image} />
             <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
                 <div className={classes.paper}>
-                    <Avatar className={classes.avatar}>
+                    <Avatar className={classes.avatar} alt="ColibriWork" src={LogoPng}>
                         {/*<LockOutlinedIcon />*/}
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign in
+                        Login
           </Typography>
-                    <form className={classes.form} noValidate>
+                    <form className={classes.form} noValidate
+                        onSubmit={handleSubmit} method="POST">
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -114,8 +80,11 @@ export default function SignInSide() {
                             label="Email Address"
                             name="email"
                             autoComplete="email"
+                            onChange={handleChange}
                             autoFocus
+
                         />
+                        {error.email && <p>{error.email}</p>}
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -125,8 +94,10 @@ export default function SignInSide() {
                             label="Password"
                             type="password"
                             id="password"
+                            onChange={handleChange}
                             autoComplete="current-password"
                         />
+                        {error.password && <p>{error.password}</p>}
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
@@ -140,10 +111,8 @@ export default function SignInSide() {
                         >
                             Sign In
                         </Button>
-                            <div
-                                >
-                            or 
-                            </div>
+
+                        {/*
                         <GoogleLogin
                             clientId="871231342119-gcggt14i4s90p3u712hs02m3t26i7td4.apps.googleusercontent.com"
                             render={renderProps => (
@@ -158,7 +127,7 @@ export default function SignInSide() {
                             onFailure={responseGoogle}
                             cookiePolicy={'single_host_origin'}
                         />
-
+                       
                         <div style={{ marginTop: '5px' }}>
                             <LinkedIn
                                 clientId="81lx5we2omq9xh"
@@ -171,7 +140,7 @@ export default function SignInSide() {
                             </LinkedIn>
                             {!code && <div></div>}
                             {code && <div>Code: {code}</div>}
-                            {/*errorMessage && <div>{errorMessage}</div>*/}
+                            {/*errorMessage && <div>{errorMessage}</div>
                             <div style={{ marginTop: '5px' }}></div>
                             <MicrosoftLogin
                                 clientId="906e62b7-ab80-469d-b1fd-6863b7085ba4"
@@ -179,16 +148,15 @@ export default function SignInSide() {
                                 //buttonTheme= "dark"
                                 redirectUri = "http://localhost:3000/"
                                 
-                              
                            />
-
+                                
                         </div>
-
+                    */}
                         <Grid container>
                             <Grid item xs>
                                 <Link href="#" variant="body2">
                                     Forgot password?
-                </Link>
+                     </Link>
                             </Grid>
                             <Grid item>
                                 <Link href="/signup" variant="body2">
@@ -198,8 +166,6 @@ export default function SignInSide() {
                         </Grid>
                         <Box mt={5}>
                             <Copyright />
-
-
                         </Box>
                     </form>
                 </div>

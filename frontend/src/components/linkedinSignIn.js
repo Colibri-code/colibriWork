@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import { LinkedIn } from 'react-linkedin-login-oauth2';
 
 class LinkedInPage extends Component {
   state = {
@@ -27,16 +26,7 @@ class LinkedInPage extends Component {
     const { code, errorMessage } = this.state;
     return (
       <div>
-        <LinkedIn
-          clientId="81lx5we2omq9xh"
-          onFailure={this.handleFailure}
-          onSuccess={this.handleSuccess}
-          redirectUri="http://localhost:3000/linkedin"
-        >
-        </LinkedIn>
-        {!code && <div>No code</div>}
-        {code && <div>Code: {code}</div>}
-        {errorMessage && <div>{errorMessage}</div>}
+      
       </div>
     );
   }
