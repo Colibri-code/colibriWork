@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { React, useState, useLayoutEffect  } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,15 +11,16 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 //import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-//import GoogleLogin from 'react-google-login';
-//import { LinkedIn } from 'react-linkedin-login-oauth2';
-//import MicrosoftLogin from "react-microsoft-login";
+
+import { GoogleLogin } from 'react-google-login';
+import { LinkedIn } from 'react-linkedin-login-oauth2';
+import MicrosoftLogin from "react-microsoft-login";
 import LogoPng from '.././../assets/img/colibriWork.png';
 import useLogin from './useLogin';
 import Validate from './validate'
 import ApiServices from '.././../services';
-
+import GoogleLogo from '.././../assets/google.png';
+import linkedinLogo from '.././../assets/linkedin.png';
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -36,10 +37,37 @@ function Copyright() {
 
 export default function SignInSide() {
 
-
+    const [msgerror, setmsgerror] = useState({
+        code: '',
+        errorMessage: ''
+    });
     const { handleSubmit, handleChange, user, error, useStyles } = useLogin(Submit, Validate);
 
     const classes = useStyles();
+
+
+    const responseGoogle = (response) => {
+        console.log(response);
+    }
+
+
+   const  handleSuccess = (data) => {
+        setmsgerror({
+            code: data.code,
+            errorMessage: '',
+        });
+    }
+
+   const handleFailure = (error) => {
+        setmsgerror({
+            code: '',
+            errorMessage: error.errorMessage,
+        });
+    }
+
+    const authHandler = (err, data) => {
+        console.log(err, data);
+      };
 
 
     function Submit() {
@@ -48,13 +76,19 @@ export default function SignInSide() {
             email: user.email,
         };
 
-        ApiServices.login(data).then(response =>{
-            console.log(response.data)
+        ApiServices.login(data).then(response => {
+            window.localStorage.setItem("user", JSON.stringify(response.data.user))
+            console.log(response.data.user)
         }).catch(e => {
             console.log(e);
-    
-          });
+           
+        });
     }
+
+
+    useLayoutEffect(() => { 
+        window.localStorage.removeItem("user");
+      }, []); 
 
 
     return (
@@ -112,46 +146,43 @@ export default function SignInSide() {
                             Sign In
                         </Button>
 
-                        {/*
+
                         <GoogleLogin
                             clientId="871231342119-gcggt14i4s90p3u712hs02m3t26i7td4.apps.googleusercontent.com"
                             render={renderProps => (
-                              <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                               <img src={googlesignin}  style={{ maxWidth: '197px' }} />
-                               <div style={{ maxWidth: '47px' }}></div>
-                                   
-                              </button>
+                                <Button onClick={renderProps.onClick} >
+                                    <img src={GoogleLogo} alt="Google_signin" />
+                                </Button>
                             )}
                             buttonText="Login"
                             onSuccess={responseGoogle}
                             onFailure={responseGoogle}
                             cookiePolicy={'single_host_origin'}
                         />
-                       
+
                         <div style={{ marginTop: '5px' }}>
                             <LinkedIn
                                 clientId="81lx5we2omq9xh"
                                 onFailure={handleFailure}
                                 onSuccess={handleSuccess}
                                 redirectUri="http://localhost:3000/linkedin"
-                        
+
                             >
-                                <img src={img} alt="Log in with Linked In" style={{ maxWidth: '197px' }} />
+                                <img src={linkedinLogo} alt="Log in with Linked In" style={{ maxWidth: '197px' }} />
                             </LinkedIn>
-                            {!code && <div></div>}
-                            {code && <div>Code: {code}</div>}
-                            {/*errorMessage && <div>{errorMessage}</div>
-                            <div style={{ marginTop: '5px' }}></div>
+                          
+
+                        </div>
+
+
                             <MicrosoftLogin
                                 clientId="906e62b7-ab80-469d-b1fd-6863b7085ba4"
                                 authCallback={authHandler}
                                 //buttonTheme= "dark"
                                 redirectUri = "http://localhost:3000/"
-                                
                            />
                                 
-                        </div>
-                    */}
+                        
                         <Grid container>
                             <Grid item xs>
                                 <Link href="#" variant="body2">
