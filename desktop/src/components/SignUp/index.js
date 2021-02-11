@@ -1,5 +1,4 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -8,10 +7,14 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Copyright from './copyright/index';
+import Image from 'material-ui-image';
+import useForm from './useForm';
+import apiService from '../../services';
+import validate from './validate';
 
 // custom styles
 import './styles.scss';
@@ -27,29 +30,12 @@ const BootstrapButton = withStyles({
   }
 })(Button);
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(2),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -63,19 +49,39 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
  const classes = useStyles();
+ const {handleSubmit, handleChange, user, error} = useForm(submit, validate)
+
+ function submit(){
+   const data = {
+     firstName: user.firstName,
+     secondName: user.secondName,
+     email: user.email,
+     password: user.password,
+    }
+
+    apiService.create(data)
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(e => {
+      console.log(e);
+    });
+  
+
+ }
 
   return (
    <div className="signUpComponent">
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <div className="DivLogoCW">
+            <Image src="images/colibriWork.png"/> 
+          </div>  
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <form className={classes.form} noValidate>
+          <form method="POST" onSubmit={handleSubmit} className={classes.form} noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -87,7 +93,10 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange={handleChange}
+                  value={user.firstName}
                 />
+                {error.firstName && <p>{error.firstName}</p>}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -96,9 +105,12 @@ export default function SignUp() {
                   fullWidth
                   id="lastName"
                   label="Last Name"
-                  name="lastName"
+                  name="secondName"
                   autoComplete="lname"
+                  onChange={handleChange}
+                  value={user.secondName}
                 />
+                {error.secondName && <p>{error.secondName}</p>}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -109,7 +121,10 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={handleChange}
+                  value={user.email}
                 />
+                {error.email && <p>{error.email}</p>}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -121,7 +136,10 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  onChange={handleChange}
+                  value={user.password}
                 />
+                {error.password && <p>{error.password}</p>}
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
