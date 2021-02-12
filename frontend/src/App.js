@@ -8,22 +8,20 @@ import React, { Component } from 'react';
 //import { LinkedInPopUp } from 'react-linkedin-login-oauth2';
 //import { render } from 'react-dom';
 import signup from './components/signup/signup';
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 function App() {
 
 
   return (
-
     <div className="App">
-      <header className="">
-
-      </header>
       <div className="body">
         <BrowserRouter>
-          {/*<Signup/>*/}
-          <Route path="/login" component={Login}></Route>
-          <Route path="/signup" component={signup} ></Route>
+          <Switch>
+            <Route exact path={"/"} component={Login}></Route>
+            <Route path="/login" component={Login}></Route>
+            <Route path="/signup" component={signup} ></Route>
+          </Switch>
         </BrowserRouter>
       </div>
 
