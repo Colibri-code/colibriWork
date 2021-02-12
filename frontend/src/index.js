@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+//import { BrowserRouter, Route } from 'react-router-dom';
+import linkedinSignIn from './components/linkedinSignIn';
+
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
+  document.getElementById('googleButton'),
 );
 
 // If you want to start measuring performance in your app, pass a function

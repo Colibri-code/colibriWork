@@ -7,6 +7,9 @@
 
 module.exports = {
   datastore: "default",
+  identity: 'user',
+  tableName: 'users',
+
   /**Fields BD */
   attributes: {
 
@@ -60,35 +63,35 @@ module.exports = {
       columnName: "profile",
       columnType: "varchar(200)"
     },
-    
+
     location: {
       type: "string",
       required: false,
       columnName: "location",
-      columnType: "varchar(20)",
+      columnType: "varchar(150)",
     },
-    
+
     phoneNumber: {
       type: "string",
       columnName: "phoneNumber",
       columnType: "varchar(20)",
       required: false,
     },
-    
+
     message: {
       type: "string",
       columnName: "message",
       columnType: "varchar(150)",
       required: false,
     },
-    
+
     alerts: {
       type: "string",
       columnName: "alerts",
       columnType: "varchar(150)",
       required: false,
     },
-    
+
     //Relationships
 
     company: {
