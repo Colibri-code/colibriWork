@@ -6,7 +6,10 @@
  */
 
 module.exports = {
-  datastore: "default",
+  datastore: 'default',
+  identity: 'user',
+  tableName: 'users',
+  
   /**Fields BD */
   attributes: {
 
@@ -33,7 +36,7 @@ module.exports = {
 
     email: {
       type: "string",
-      columnName: "userEmail",
+      columnName: "email",
       columnType: "varchar(50)",
       required: true,
       unique: true,

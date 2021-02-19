@@ -28,11 +28,11 @@ module.exports.security = {
   *                                                                          *
   ***************************************************************************/
 
-  // cors: {
-  //   allRoutes: false,
-  //   allowOrigins: '*',
-  //   allowCredentials: false,
-  // },
+  cors: {
+    allRoutes: true,  //Roberto Hodgson lo pasé de false a true para solucionar error en chrome
+     allowOrigins: '*',
+     allowCredentials: false,
+   },
 
 
   /****************************************************************************

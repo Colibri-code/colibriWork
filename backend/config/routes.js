@@ -15,6 +15,11 @@ module.exports.routes = {
     allowCredentials: false
   }},
 
+  'POST /user/login':{controller:'UserController', action:'login', cors: {
+    allowOrigins: ['http://localhost:1337'],
+    allowCredentials: false
+  }},
+
   //Contractor Routes
   
   'POST /contractor/Create': { controller: "ContractorController", action: "create" },
@@ -31,6 +36,7 @@ module.exports.routes = {
 
 //User Routes
   'POST /user/create':{controller:'UserController', action:'create'},
+  'POST /user/login':{controller:'UserController', action: 'login'},
   'GET /user/read/:id':{controller:'UserController', action:'read'},
   'PATCH  /user/update/:id':{controller:'UserController', action:'update'},
   'DELETE /user/delete/:id': {controller: "UserController", action: "delete"},

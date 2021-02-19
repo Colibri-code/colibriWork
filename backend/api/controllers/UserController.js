@@ -19,7 +19,7 @@ module.exports = {
 
       res.send({ user: newUser });
     } catch (error) {
-
+      res.send(error);
       res.serverError("Invalid Data");
     }
   },
@@ -65,7 +65,23 @@ module.exports = {
     }
   },
 
-
+  /**
+ * Login user: Validate User email and password
+ */
+  login: async function (req, res) {
+    try {
+      const loggedUser = await user
+        .findOne({ email: req.body.email })
+        .decrypt();
+      if (!loggedUser) return res.notFound();
+      if (loggedUser.password !== req.body.password) return res.notFound();
+     
+      const token = await sails.helpers.generateAuthToken(loggedUser.id);
+      res.send({ user: loggedUser, token });
+    } catch (error) {
+      res.serverError("Invalid Data");
+    }
+  },
 
 };
 
