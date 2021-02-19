@@ -7,14 +7,14 @@
 
 module.exports = {
 
-/**
- * Create User into Database
- */
+  /**
+   * Create User into Database
+   */
 
   create: async function (req, res) {
     try {
       if (!req.body.password)
-      return res.serverError("Invalid Data");
+        return res.serverError("Invalid Data");
       const newUser = await user.create(req.body).fetch();
 
       res.send({ user: newUser });
@@ -32,7 +32,7 @@ module.exports = {
     if (req.params.id) {
       const data = await user.findOne({
         where: { id: req.params.id },
-        select: ["createdAt","updatedAt","id","email","password","firstName","secondName","picture","headline","profile","location","phoneNumber", "message","alerts"],
+        select: ["createdAt", "updatedAt", "id", "email", "password", "firstName", "secondName", "picture", "headline", "profile", "location", "phoneNumber", "message", "alerts"],
       });
       res.json({ user: data });
     } else {
@@ -65,14 +65,18 @@ module.exports = {
     }
   },
 
+<<<<<<< HEAD
   /**
  * Login user: Validate User email and password
  */
+=======
+>>>>>>> f0b1bfdf2051ce1e5c85b9f24b3322b41b0cb8ec
   login: async function (req, res) {
     try {
       const loggedUser = await user
         .findOne({ email: req.body.email })
         .decrypt();
+<<<<<<< HEAD
       if (!loggedUser) return res.notFound();
       if (loggedUser.password !== req.body.password) return res.notFound();
      
@@ -82,6 +86,24 @@ module.exports = {
       res.serverError("Invalid Data");
     }
   },
+=======
+
+      if (!loggedUser)
+
+      return res.notFound();
+      if (loggedUser.password !== req.body.password)
+
+      return res.notFound();
+      res.send({ user: loggedUser });
+
+    } catch (error) {
+
+      res.serverError("Invalid Data");
+    }
+  },
+
+
+>>>>>>> f0b1bfdf2051ce1e5c85b9f24b3322b41b0cb8ec
 
 };
 
