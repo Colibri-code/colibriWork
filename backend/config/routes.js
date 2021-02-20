@@ -15,6 +15,21 @@ module.exports.routes = {
     allowCredentials: false
   }},
 
+<<<<<<< HEAD
+  'POST /user/login':{controller:'UserController', action:'login', cors: {
+    allowOrigins: ['http://localhost:1337'],
+    allowCredentials: false
+  }},
+
+  //Contractor Routes
+  
+  'POST /contractor/Create': { controller: "ContractorController", action: "create" },
+  'GET /contractor/Read/:id': { controller: "ContractorController", action: "read" },
+  'PATCH /contractor/Update/:id': { controller: "ContractorController", action: "update" },
+  'DELETE /contractor/Delete': { controller: "ContractorController", action: "delete" },
+
+=======
+>>>>>>> f0b1bfdf2051ce1e5c85b9f24b3322b41b0cb8ec
   //ProjectManager Routes
 
   'POST /ProjectManager/Create': { controller: "ProjectManagerController", action: "create" },
@@ -23,11 +38,19 @@ module.exports.routes = {
   'DELETE /ProjectManager/Delete': { controller: "ProjectManagerController", action: "delete" },
 
 //User Routes
+<<<<<<< HEAD
+  'POST /user/create':{controller:'UserController', action:'create'},
+  'POST /user/login':{controller:'UserController', action: 'login'},
+  'GET /user/read/:id':{controller:'UserController', action:'read'},
+  'PATCH  /user/update/:id':{controller:'UserController', action:'update'},
+  'DELETE /user/delete/:id': {controller: "UserController", action: "delete"},
+=======
   'POST /user/Create':{controller:'UserController', action:'create'},
   'GET /user/Read/:id':{controller:'UserController', action:'read'},
   'PATCH  /user/Update/:id':{controller:'UserController', action:'update'},
   'DELETE /user/Delete/:id': {controller: "UserController", action: "delete"},
   'POST /user/Login':{controller: "UserController", action:"login"},
+>>>>>>> f0b1bfdf2051ce1e5c85b9f24b3322b41b0cb8ec
 
 //Team Routes
   'POST /team/Create':{controller:'TeamsController', action:'create'},

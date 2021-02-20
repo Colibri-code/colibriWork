@@ -19,7 +19,7 @@ module.exports = {
 
       res.send({ user: newUser });
     } catch (error) {
-
+      res.send(error);
       res.serverError("Invalid Data");
     }
   },
@@ -65,11 +65,28 @@ module.exports = {
     }
   },
 
+<<<<<<< HEAD
+  /**
+ * Login user: Validate User email and password
+ */
+=======
+>>>>>>> f0b1bfdf2051ce1e5c85b9f24b3322b41b0cb8ec
   login: async function (req, res) {
     try {
       const loggedUser = await user
         .findOne({ email: req.body.email })
         .decrypt();
+<<<<<<< HEAD
+      if (!loggedUser) return res.notFound();
+      if (loggedUser.password !== req.body.password) return res.notFound();
+     
+      const token = await sails.helpers.generateAuthToken(loggedUser.id);
+      res.send({ user: loggedUser, token });
+    } catch (error) {
+      res.serverError("Invalid Data");
+    }
+  },
+=======
 
       if (!loggedUser)
 
@@ -86,6 +103,7 @@ module.exports = {
   },
 
 
+>>>>>>> f0b1bfdf2051ce1e5c85b9f24b3322b41b0cb8ec
 
 };
 

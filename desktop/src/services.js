@@ -18,8 +18,8 @@ const remove = id => {
 };
 
 const login = data => {
-  return http.post(`/user/Login`,data);
-} 
+  return http.post(`/user/login`, data);
+};
 
 export default {
   get,
